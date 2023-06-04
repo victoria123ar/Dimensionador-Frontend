@@ -40,15 +40,20 @@ Siga as etapas abaixo para executar o projeto em seu ambiente de desenvolvimento
 
 2. **Instalar as dependências**: No diretório raiz do projeto, execute o seguinte comando no terminal para instalar todas as dependências necessárias:
 
-**npm install**
+```bash
+npm i
+```
 
-3. **Configurar o arquivo .env**: Renomeie o arquivo `.env.example` para `.env`. Abra o arquivo `.env` e preencha as variáveis de ambiente de acordo com as configurações do seu ambiente de desenvolvimento. Certifique-se de que a variável `REACT_APP_API_BASE_URL` esteja apontando para o servidor de API correto. Por exemplo:
+3. **Configurar o arquivo .env**: Renomeie o arquivo `.env.example` para `.env`. Abra o arquivo `.env` e preencha as variáveis de ambiente de acordo com as configurações do seu ambiente de desenvolvimento. Certifique-se de que a variável `REACT_APP_API_BASE_URL` esteja apontando para o servidor de API correto (dimensionador-backend). Por exemplo:
 
 **REACT_APP_API_BASE_URL=http://localhost:8000**
 
 4. **Iniciar o servidor de desenvolvimento**: Execute o seguinte comando no terminal para iniciar o servidor de desenvolvimento. Isso iniciará a aplicação e abrirá automaticamente no seu navegador padrão.
 
-**npm start**
+```bash
+npm run build
+npm start
+```
 
 Agora você pode explorar e utilizar o projeto em seu ambiente de desenvolvimento. Qualquer alteração no código-fonte será automaticamente recarregada no navegador para facilitar o desenvolvimento contínuo.
 
