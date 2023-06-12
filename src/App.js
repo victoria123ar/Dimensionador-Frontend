@@ -7,6 +7,7 @@ import {
 import { Login, Register } from './pages/index';
 import { UserProvider } from './contexts/UserContext';
 import { ToastContainer } from 'react-toastify';
+import Home from './pages/Home';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/home" element={<Home />}/>
         </Routes>
       </Router>
     </UserProvider>
