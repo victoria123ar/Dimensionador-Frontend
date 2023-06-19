@@ -20,8 +20,8 @@ import {
   Composition,
 } from "./style";
 import {
+  calculation,
   getNames,
-  specificMassAndViscosity,
 } from "../../services/componentsApi";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -63,70 +63,34 @@ export default function Home() {
   }, []);
 
   const validateFields = () => {
-    if (!calculationType) {
-      toast("Selecione um tipo de cálculo.");
+    if (
+      !calculationType ||
+      !typeTaps ||
+      !typeFase ||
+      !component1 ||
+      (calculationType !== "ddp" && !inletPressure) ||
+      (calculationType !== "flow" && !flow) ||
+      !pipeDiameter ||
+      (typeTaps === "Outros" && (!l1 || !l2)) ||
+      (calculationType !== "orifice" && (!beta)) ||
+      !inletTemperature ||
+      !outletTemperature
+    ) {
+      toast("Preencha todos os campos corretamente.");
       return false;
     }
-  
-    if (!typeTaps) {
-      toast("Selecione um tipo de tomada.");
-      return false;
-    }
-  
-    if (!typeFase) {
-      toast("Selecione um tipo de fase.");
-      return false;
-    }
-  
-    if (!component1) {
-      toast("Selecione pelo menos um componente.");
-      return false;
-    }
-  
-    if (calculationType !== "ddp" && !inletPressure) {
-      toast("Preencha o campo Pressão de entrada na placa (P1).");
-      return false;
-    }
-  
-    if (calculationType === "ddp" && !ddp) {
-      toast("Preencha o campo Diferença de pressão (ΔP).");
-      return false;
-    }
-  
-    if (calculationType !== "flow" && !flow) {
-      toast("Preencha o campo Vazão mássica (Qm).");
-      return false;
-    }
-  
-    if (!pipeDiameter) {
-      toast("Preencha os campos Diâmetro do orifício (d) e Diâmetro da tubulação (D).");
-      return false;
-    }
-  
-    if (typeTaps === "Outros" && (!l1 || !l2)) {
-      toast("Preencha os campos Distância à montante da tomada (l1) e Distância à jusante da tomada (l’2).");
-      return false;
-    }
-  
-    if (calculationType !== "orifice" && (!beta || !orificeDiameter)) {
-      toast("Preencha o campo Razão entre d e D (β).");
-      return false;
-    }
-  
-    if (!inletTemperature || !outletTemperature) {
-      toast("Preencha os campos Temperatura de entrada e Temperatura de saída.");
-      return false;
-    }
-  
-    const compositionSum = Number(composition1) + Number(composition2) + Number(composition3) + Number(composition4) + Number(composition5);
+    const compositionSum =
+      Number(composition1) +
+      Number(composition2) +
+      Number(composition3) +
+      Number(composition4) +
+      Number(composition5);
     if (compositionSum !== 1) {
       toast("A soma dos valores de composição deve ser igual a 1.");
       return false;
     }
-  
     return true;
   };
-  
 
   const handleSubmit = async () => {
     const inputData = {
@@ -156,8 +120,11 @@ export default function Home() {
     };
 
     try {
-      const response = await specificMassAndViscosity(inputData);
-      console.log(response.data);
+      const response = await calculation(inputData);
+      setBeta(response.beta)
+      setDdp(response.ddp)
+      setFlow(response.flow)
+      setOrificeDiameter(response.orificeDiameter)
     } catch (error) {
       console.log(error.message);
     }
@@ -169,7 +136,17 @@ export default function Home() {
     }
   };
 
-  console.log(inletPressure, )
+/*   useEffect(() => {
+    if (typeTaps === "orifice") {
+      setBeta("");
+    }
+    if (typeTaps === "flow") {
+      setFlow("");
+    }
+    if (typeTaps === "orifice") {
+      setDdp("");
+    }
+  }, [typeTaps]); */
 
   return (
     <Container>
@@ -213,8 +190,7 @@ export default function Home() {
             />
             <input
               name="d"
-              placeholder={calculationType === "orifice" ? "" : "Diâmetro em m"}
-              disabled={calculationType === "orifice"}
+              disabled
               value={orificeDiameter}
               onChange={(e) => setOrificeDiameter(e.target.value)}
             />

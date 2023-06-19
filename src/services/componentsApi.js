@@ -5,7 +5,7 @@ export async function getNames() {
   return response.data;
 }
 
-export async function specificMassAndViscosity(BaseParaCalculo) {
-      const response = await api.post('/components/inputs', BaseParaCalculo);
+export async function calculation(inputData) {
+      const response = await api.post('/components/inputs', inputData);
       return response.data;
   };
