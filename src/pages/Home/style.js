@@ -102,11 +102,12 @@ const ContainerInputs = styled.div`
     color: black;
     border: 1px solid black;
     border-radius: 8px;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
   }
   input[disabled] {
     cursor: auto;
+    background-color: #E0E0E0;
   }
   @media (max-width: 420px) {
     input {
@@ -147,6 +148,7 @@ const Middleware = styled.div`
     margin-left: 10px;
     padding: 5px;
     cursor: pointer;
+    background-color: white;
   }
 
   @media (max-width: 1410px) {
@@ -196,7 +198,7 @@ const ContainerInletTemperature = styled.div`
     border-radius: 8px;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
   }
   @media (max-width: 420px) {
@@ -225,7 +227,7 @@ const ContainerOutletTemperature = styled.div`
     border-radius: 8px;
     margin-left: 10px;
     margin-right: 10px;
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
   }
   @media (max-width: 420px) {
@@ -274,7 +276,7 @@ const Button = styled.button`
   margin-top: 15px;
   margin-left: 40px;
   cursor: pointer;
-  background: #a0a0a0;
+  background: #C0C0C0;
   border: none;
   border-radius: 10px;
   :hover {
@@ -316,27 +318,42 @@ const ComponentsName = styled.div`
     font-size: 14px;
   }
   select {
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-left: 10px;
     margin-bottom: 5px;
+    padding: 5px;
+    cursor: pointer;
+    background-color: white;
   }
 `;
 
 const Composition = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
+  width: 80px;
   p {
     margin-bottom: 10px;
+    margin-left: 10px;
     text-align: center;
     font-size: 14px;
   }
   input {
+    width: 80px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    color: black;
+    border: 1px solid black;
+    border-radius: 8px;
+    margin-left: 10px;
     margin-bottom: 5px;
-    width: 100px;
-    height: 19px;
     padding: 5px;
-  }
-  placeholder {
-    padding: 5px;
+    cursor: pointer;
+    background-color: white;
   }
 `;
 export {

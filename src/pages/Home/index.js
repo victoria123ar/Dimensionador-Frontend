@@ -136,17 +136,17 @@ export default function Home() {
     }
   };
 
-/*   useEffect(() => {
-    if (typeTaps === "orifice") {
+useEffect(() => {
+    if (calculationType === "orifice") {
       setBeta("");
     }
-    if (typeTaps === "flow") {
+    if (calculationType === "flow") {
       setFlow("");
     }
-    if (typeTaps === "orifice") {
+    if (calculationType === "ddp") {
       setDdp("");
     }
-  }, [typeTaps]); */
+  }, [calculationType]);
 
   return (
     <Container>
